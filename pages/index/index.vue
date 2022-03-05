@@ -6,7 +6,7 @@
 				<image src="../../static/images/index/1.jpg" mode=""></image>
 			</view>
 			<view class="top-bar-center">
-				<image class="logo" src="../../static/images/index/fuchouzhelianmeng-heibao.png" mode=""></image>
+				<image class="logo" src="../../static/images/index/kaoyan.png" mode=""></image>
 			</view>
 			<view class="top-bar-right">
 				<view class="search"><image src="../../static/images/index/sousuo.png"></image></view>
@@ -15,23 +15,40 @@
 		</view>
 		<view class="main">
 			<!-- 好友申请 -->
-			<view class="apply"></view>
-			<!-- 好友列表 -->
 			<view class="friends">
 				<view class="friend-list">
 					<!-- 好友列表左侧部分 包括头像和消息提示 -->
 					<view class="friend-list-l">
 						<text class="tip">1</text>
-						<image src="../../static/images/index/2.jpg"></image>
+						<image src="../../static/images/index/haoyou.png"></image>
 					</view>
 					<!-- 好友列表右侧 包括好友名、消息详情、发送时间 -->
 					<view class="friend-list-r">
 						 <view class="top">
-							 <view class="name">Moyo</view>
+							 <view class="name">好友申请</view>
 							 <view class='time'>8:24</view>
 						 </view>
 						 <!-- 消息详情 -->
-						 <view class="message">晚安，玛卡巴卡，奥迪萨科的撒娇地撒娇大家安静地撒娇大家撒娇的急撒的教案设计</view>
+						 <view class="message">茫茫人海，相聚便是缘分</view>
+					</view>
+				</view>
+			</view>
+			<!-- 好友列表 -->
+			<view class="friends">
+				<view class="friend-list" v-for="(item,index) in friends" :key='item.id'>
+					<!-- 好友列表左侧部分 包括头像和消息提示 -->
+					<view class="friend-list-l">
+						<text class="tip">{{item.tip}}</text>
+						<image :src="item.imgurl"></image>
+					</view>
+					<!-- 好友列表右侧 包括好友名、消息详情、发送时间 -->
+					<view class="friend-list-r">
+						 <view class="top">
+							 <view class="name">{{item.name}}</view>
+							 <view class='time'>{{item.time}}</view>
+						 </view>
+						 <!-- 消息详情 -->
+						 <view class="message">{{item.message}}</view>
 					</view>
 				</view>
 			</view>
@@ -40,6 +57,7 @@
 </template>
 
 <script>
+	import datas from '../../commons/js/datas.js'
 	export default {
 		data() {
 			return {
@@ -47,10 +65,17 @@
 			}
 		},
 		onLoad() {
-
+          this.getFriends()
 		},
 		methods: {
-
+           getFriends: function(){
+			    //向实例上绑定friends数据
+			   this.friends = datas.friends();
+			   for(let i = 0;i<this.friends.length;i++){
+				  this.friends[i].imgurl = '../../static/images/img/'+this.friends[i].imgurl
+			   }
+			   console.log(this.friends)
+		   }
 		}
 	}
 </script>
@@ -137,6 +162,7 @@
 				width: 96rpx;
 				height: 96rpx;
 				border-radius: $uni-border-radius-base;
+				background-color: $uni-color-primary;
 			}
 			.tip {
 				position: absolute;
@@ -165,9 +191,23 @@
 					line-height: 50rpx;
 				}
 				.time {
+					//display: none;
 					float: right;
+					font-size: $uni-font-size-sm;
+					color: $uni-text-color-disable;
+					line-height: 50rpx;
 				}
 			}
 		}
+	  .message{
+		  font-size: $uni-font-size-base;
+		  color: $uni-text-color-grey;
+		  line-height: 40rpx;
+		  //css单行省略号
+		  display: -webkit-box;
+		  -webkit-box-orient: vertical;
+		  -webkit-line-clamp: 1;
+		  overflow: hidden;
+	  }
 	}
 </style>
