@@ -34,6 +34,94 @@ export default{
 			   name:'乌克兰特工',
 			   time: new Date(),
 			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
+			},
+			{
+			   id:4,
+			   imgurl: 'four.jpg',
+			   tip:99,
+			   name:'乌克兰特工',
+			   time: new Date(),
+			   message: '表，救我'
 			}
 		]
 		return friendarr;

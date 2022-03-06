@@ -20,7 +20,7 @@
 					<!-- 好友列表左侧部分 包括头像和消息提示 -->
 					<view class="friend-list-l">
 						<text class="tip">1</text>
-						<image src="../../static/images/index/haoyou.png"></image>
+						<image src="../../static/images/index/haoyoushenqing.png"></image>
 					</view>
 					<!-- 好友列表右侧 包括好友名、消息详情、发送时间 -->
 					<view class="friend-list-r">
@@ -45,7 +45,7 @@
 					<view class="friend-list-r">
 						 <view class="top">
 							 <view class="name">{{item.name}}</view>
-							 <view class='time'>{{item.time}}</view>
+							 <view class='time'>{{formatTime(item.time)}}</view>
 						 </view>
 						 <!-- 消息详情 -->
 						 <view class="message">{{item.message}}</view>
@@ -58,6 +58,7 @@
 
 <script>
 	import datas from '../../commons/js/datas.js'
+	import timeUtils from '../../commons/utils/timeUtils.js'
 	export default {
 		data() {
 			return {
@@ -68,13 +69,17 @@
           this.getFriends()
 		},
 		methods: {
+			//date 消息发送的时间
+			formatTime: function(date){
+				return timeUtils.dateTime(date)
+			},
            getFriends: function(){
 			    //向实例上绑定friends数据
 			   this.friends = datas.friends();
 			   for(let i = 0;i<this.friends.length;i++){
 				  this.friends[i].imgurl = '../../static/images/img/'+this.friends[i].imgurl
 			   }
-			   console.log(this.friends)
+			  // console.log(this.friends)
 		   }
 		}
 	}
@@ -148,13 +153,15 @@
 
     .main {
 		width: 100%;
-		padding: 88rpx $uni-spacing-col-base 0;
-		border: 1px solid red;
+		padding-top: 100rpx; //top-bar 高度是88rpx 再往下一点让好友列表离顶部远一点
 	} 
 	
 	.friend-list{
 		height: 96rpx;
-		padding: 16rpx 0;
+		padding: 16rpx $uni-spacing-col-base;
+		&:active{
+			background-color: $uni-bg-color-grey;
+		}
 		.friend-list-l{
 			position: relative;
 			float: left;
