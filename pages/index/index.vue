@@ -91,6 +91,8 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		padding-top: var(--status-bar0-height);//防止将手机顶部状态栏覆盖
+		padding-bottom: $uni-spacing-col-base;//方便观看最下面的消息
 	}
 
 	.top-bar {
@@ -100,13 +102,13 @@
 		left: 0;
 		width: 100%;
 		height: 88rpx;
-		//将padding不算在宽度以内
-		box-sizing: border-box;
+		//防止将手机顶部状态栏覆盖
+		padding-top: var(--status-bar0-height);
 		background: $uni-bg-color;
 		border-bottom: 1px solid $uni-border-color;
 		//padding-left: $uni-spacing-col-base;
 		//padding-right: $uni-spacing-col-base;
-		 .top-bar-left{
+		.top-bar-left{
 			   float: left;
 			   padding-left: $uni-spacing-col-base;
 			   image{
