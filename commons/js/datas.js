@@ -8,6 +8,7 @@ export default{
 			   imgurl: 'one.jpg',
 			   tip:3,
 			   name:'孙哥',
+			   email:'senlang@163.com',
 			   time: new Date(),
 			   message: '玩剑圣的都没ma'
 		    },
@@ -16,6 +17,7 @@ export default{
 			   imgurl: 'two.jpg',
 			   tip:1,
 			   name:'刘墨林',
+			   email:'tianxiang@163.com',
 			   time: new Date(),
 			   message: '苏瞬卿是天下第一女子'
 			},
@@ -24,6 +26,7 @@ export default{
 			   imgurl: 'three.jpg',
 			   tip:6,
 			   name:'南邮彭于晏',
+			   email:'axiswee@163.com',
 			   time: new Date(),
 			   message: '你知道的，太帅是要被排斥的'
 			},
@@ -32,98 +35,87 @@ export default{
 			   imgurl: 'four.jpg',
 			   tip:99,
 			   name:'乌克兰特工',
+			   email:'pop@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			},
 			{
-			   id:4,
+			   id:5,
 			   imgurl: 'four.jpg',
 			   tip:99,
 			   name:'乌克兰特工',
+			   email:'wangyi@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			},
 			{
-			   id:4,
+			   id:6,
 			   imgurl: 'four.jpg',
 			   tip:99,
 			   name:'乌克兰特工',
+			   email:'qq@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			},
 			{
-			   id:4,
+			   id:7,
 			   imgurl: 'four.jpg',
 			   tip:99,
 			   name:'乌克兰特工',
+			   email:'music@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			},
 			{
-			   id:4,
+			   id:8,
 			   imgurl: 'four.jpg',
 			   tip:99,
 			   name:'乌克兰特工',
+			   email:'tencent@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			},
 			{
-			   id:4,
+			   id:9,
 			   imgurl: 'four.jpg',
-			   tip:99,
+			   tip:0,
 			   name:'乌克兰特工',
+			   email:'alibaba@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			},
 			{
-			   id:4,
+			   id:10,
 			   imgurl: 'four.jpg',
 			   tip:99,
 			   name:'乌克兰特工',
-			   time: new Date(),
-			   message: '表，救我'
-			},
-			{
-			   id:4,
-			   imgurl: 'four.jpg',
-			   tip:99,
-			   name:'乌克兰特工',
-			   time: new Date(),
-			   message: '表，救我'
-			},
-			{
-			   id:4,
-			   imgurl: 'four.jpg',
-			   tip:99,
-			   name:'乌克兰特工',
-			   time: new Date(),
-			   message: '表，救我'
-			},
-			{
-			   id:4,
-			   imgurl: 'four.jpg',
-			   tip:99,
-			   name:'乌克兰特工',
-			   time: new Date(),
-			   message: '表，救我'
-			},
-			{
-			   id:4,
-			   imgurl: 'four.jpg',
-			   tip:99,
-			   name:'乌克兰特工',
-			   time: new Date(),
-			   message: '表，救我'
-			},
-			{
-			   id:4,
-			   imgurl: 'four.jpg',
-			   tip:99,
-			   name:'乌克兰特工',
+			   email:'alibaba@163.com',
 			   time: new Date(),
 			   message: '表，救我'
 			}
 		]
-		return friendarr;
+		return friendarr
+	},
+	//好友列表
+	friendlist: function(){
+		let friendList = [
+			{
+				userid:1,
+				friend:1,
+			},
+			{
+				userid:1,
+				friend:2,
+			},
+			{
+				userid:1,
+				friend:5,
+			},
+			{
+				userid:1,
+				friend:8,
+			},
+		]
+		return friendList
 	}
 }
