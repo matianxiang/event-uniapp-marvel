@@ -2,9 +2,9 @@
 	<view class="content">
 		<!-- 顶部 -->
 		<view class="top-bar">
-			<view class="top-bar-left">
+			<navigator url="../userhome/userhome?id=aaa" class="top-bar-left">
 				<image src="../../static/images/index/1.jpg" mode=""></image>
-			</view>
+			</navigator>
 			<view class="top-bar-center">
 				<image class="logo" src="../../static/images/index/kaoyan.png" mode=""></image>
 			</view>
