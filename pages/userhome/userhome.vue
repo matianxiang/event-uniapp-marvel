@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="content">
 		<view class="top-bar">
 			<view class="top-bar-left" @tap="backOneStep">
 				<image src="../../static/images/common/back.png" class="back-img"></image>

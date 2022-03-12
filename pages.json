@@ -57,6 +57,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/friendRequest/friendRequest",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

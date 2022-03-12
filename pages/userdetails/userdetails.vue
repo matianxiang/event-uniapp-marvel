@@ -16,15 +16,15 @@
 			<view class="column heads">
 				<view class="row head">
 					<view class="title">头像</view>
-					<view class="user-head">
+					<view class="user-head" @tap="upload">
 						<image-cropper :src="tempFilePath" @confirm="confirm" @cancel="cancel"></image-cropper>
-						<image :src="cropFilePath" @tap="upload" class="user-img"></image>
+						<image :src="cropFilePath" class="user-img"></image>
 					</view>
-					<view class="more">
+					<view class="more" @tap="upload">
 						<image src="../../static/images/common/more.png" mode="aspectFit"></image>
 					</view>
 				</view>
-				<view class="row">
+				<view class="row" @tap="modify('签名',user.Signature,false)">
 					<view class="title">签名</view>
 					<view class="cont">
 						{{user.Signature}}
@@ -33,15 +33,15 @@
 						<image src="../../static/images/common/more.png" mode="aspectFit"></image>
 					</view>
 				</view>
-				<view class="row">
+				<view class="row disable_click">
 					<view class="title">注册</view>
 					<view class="cont">
-						{{user.regesiterTime}}
+						{{changeTime(user.regesiterTime)}}
 					</view>
 				</view>
 			</view>
 			<view class="column">
-				<view class="row">
+				<view class="row" @tap="modify('昵称',user.nick,false)">
 					<view class="title">昵称</view>
 					<view class="cont">
 						{{user.nick}}
@@ -72,7 +72,7 @@
 						<image src="../../static/images/common/more.png" mode="aspectFit"></image>
 					</view>
 				</view>
-				<view class="row">
+				<view class="row" @tap="modify('电话',user.tel,false)">
 					<view class="title">电话</view>
 					<view class="cont">
 						{{user.tel}}
@@ -81,7 +81,7 @@
 						<image src="../../static/images/common/more.png" mode="aspectFit"></image>
 					</view>
 				</view>
-				<view class="row">
+				<view class="row" @tap="modify('邮箱',user.email,true)">
 					<view class="title">邮箱</view>
 					<view class="cont">
 						{{user.email}}
@@ -92,7 +92,7 @@
 				</view>
 			</view>
 			<view class="column">
-				<view class="row">
+				<view class="row" @tap="modify('邮箱',user.psw,true)">
 					<view class="title">密码</view>
 					<view class="cont">
 						{{user.psw}}
@@ -104,11 +104,24 @@
 			</view>
 			<view class="btn2">退出应用</view>
 		</view>
+		<view class="modify" :style="{bottom:-+deviceHeight+'px'}" :animation="animationData">
+			<view class="modify-header">
+				<view class="close" @tap="modify()">取消</view>
+				<view class="title">{{modifyTitle}}</view>
+				<view class="define" @tap="modifyConfirm()">确定</view>
+			</view>
+			<view class="modify-main">
+				<input type='text' v-model="pwd" class="modify-pwd" placeholder="请输入原密码"
+					placeholder-style="color: #aaa;font-weight:400" v-if="needPwd"></input>
+				<textarea v-model="text_data" class="modify-content"></textarea>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
 	import ImageCropper from "@/components/ling-imgcropper/ling-imgcropper.vue";
+	import timeUtils from "@/commons/utils/timeUtils.js"
 	export default {
 		data() {
 			const currentDate = this.getDate({
@@ -132,7 +145,17 @@
 				tempFilePath: '',
 				// cropFilePath: "../../static/images/img/one.jpg",  使用计算属性
 				// headimg
+				text_data: '修改的内容',
+				animationData: {}, //修改动画
+				isModify: false, //修改动画开关
+				deviceHeight: '',
+				pwd: '', //原密码,
+				modifyTitle: '', //修改标题
+				needPwd: false, //是否需要验证密码
 			}
+		},
+		onReady: function() {
+			this.getDeviceInfo()
 		},
 		components: {
 			ImageCropper,
@@ -145,10 +168,10 @@
 				return this.getDate('end');
 			},
 			cropFilePath: {
-				get(){
+				get() {
 					return this.user.imgUrl
 				},
-				set(value){
+				set(value) {
 					this.user.imgUrl = value
 				}
 			}
@@ -159,6 +182,10 @@
 				uni.navigateBack({
 					delta: 1, //返回一层
 				})
+			},
+			//时间格式化
+			changeTime: function(date) {
+				return timeUtils.dateTime(date)
 			},
 			//性别选择器
 			bindPickerChange: function(e) {
@@ -190,7 +217,7 @@
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ["original", "compressed"], //可以指定是原图还是压缩图，默认二者都有
-					sourceType: ["album",'camera'], //从相册、相机选择
+					sourceType: ["album", 'camera'], //从相册、相机选择
 					success: (res) => {
 						this.tempFilePath = res.tempFilePaths.shift();
 					},
@@ -199,7 +226,7 @@
 			confirm(e) {
 				this.tempFilePath = "";
 				this.cropFilePath = e.detail.tempFilePath;
-                //this.headimg = e.detail.tempFilePath
+				//this.headimg = e.detail.tempFilePath
 				// #ifdef APP-PLUS||MP
 				//除了H5端返回base64数据外，其他端都是返回临时地址，所以你要判断base64还是临时文件名，（用条件编译APP-PLUS||MP执行编译。）
 				//按我这里是先上传裁剪得来的临时文件地址然后得到临时文件名，
@@ -228,6 +255,35 @@
 				console.log("canceled");
 				this.tempFilePath = "";
 			},
+			//获取设备的高度
+			getDeviceInfo: function() {
+				const query = uni.createSelectorQuery().in(this)
+				query.select('.modify').boundingClientRect(data => {
+					this.deviceHeight = data.height;
+					console.log('高度' + this.deviceHeight)
+				}).exec()
+			},
+			//修改项弹框
+			modify: function(type, data, needPwd) {
+				this.needPwd = needPwd //是否需要验证密码
+				this.modifyTitle = type //修改弹框绑定的title
+				this.text_data = data //textarea初始绑定的值
+				this.isModify = !this.isModify
+				var animation = uni.createAnimation({
+					duration: 400,
+					timingFunction: 'ease',
+				})
+				if (this.isModify) {
+					animation.bottom(0).step()
+				} else {
+					animation.bottom(-this.deviceHeight).step()
+				}
+			 this.animationData = animation.export()
+			},
+			//弹窗修改确定
+			modifyConfirm: function() {
+				this.modify()
+			}
 		}
 	}
 </script>
@@ -255,8 +311,18 @@
 			.row {
 				display: flex;
 				flex-direction: row;
-			}
 
+				:active {
+					background-color: $uni-bg-color-hover;
+				}
+			}
+            
+			.disable_click{
+				:active {
+				  background-color: rgba(255,255,255,1);
+				}
+			}
+			
 			.title {
 				flex: none;
 
@@ -313,6 +379,84 @@
 			font-size: $uni-font-size-lg;
 			color: $uni-color-warning;
 			line-height: 88rpx;
+		}
+	}
+
+	//修改弹框
+	.modify {
+		position: fixed;
+		z-index: 1002;
+		//top: 0;  动态绑定bottom bottom:812px = top:0
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: #fff;
+
+		.modify-header {
+			width: 100%;
+			height: 88rpx;
+			//防止将手机顶部状态栏覆盖
+			padding-top: var(--status-bar0-height);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			border-bottom: 1px solid $uni-border-color;
+
+			.close {
+				padding-left: $uni-spacing-col-base;
+				font-size: $uni-font-size-lg;
+				color: $uni-text-color;
+				line-height: 44rpx;
+			}
+
+			.title {
+				flex: auto;
+				text-align: center;
+				font-size: 40rpx;
+				color: $uni-text-color;
+				line-height: 88rpx;
+				font-weight: 600;
+			}
+
+			.define {
+				padding-right: $uni-spacing-col-base;
+				font-size: $uni-font-size-lg;
+				color: $uni-color-success;
+				line-height: 44rpx;
+			}
+		}
+
+		.modify-main {
+			display: flex;
+			padding: $uni-spacing-col-base;
+			flex-direction: column;
+
+			.modify-pwd {
+				margin-bottom: $uni-spacing-col-base;
+				padding: 0 22rpx;
+				box-sizing: border-box; //注意一定要加
+				flex: auto;
+				width: 100%;
+				height: 88rpx;
+				background: $uni-bg-color-grey;
+				border-radius: $uni-border-radius-base;
+				font-size: $uni-font-size-lg;
+				color: $uni-text-color;
+				line-height: 88rpx;
+			}
+
+			.modify-content {
+				padding: 16rpx 22rpx;
+				box-sizing: border-box; //注意一定要加
+				flex: auto;
+				width: 100%;
+				height: 386rpx;
+				background: $uni-bg-color-grey;
+				border-radius: $uni-border-radius-base;
+				font-size: $uni-font-size-lg;
+				color: $uni-text-color;
+				line-height: 44rpx;
+			}
 		}
 	}
 </style>
