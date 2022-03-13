@@ -9,13 +9,17 @@
 				<image class="logo" src="../../static/images/index/kaoyan.png" mode=""></image>
 			</view>
 			<view class="top-bar-right">
-				<view class="search" @tap='toSearchPage'><image src="../../static/images/index/sousuo.png"></image></view>
-				<view class="add"><image src="../../static/images/index/jia.png"></image></view>
+				<view class="search" @tap='toSearchPage'>
+					<image src="../../static/images/index/sousuo.png"></image>
+				</view>
+				<view class="add">
+					<image src="../../static/images/index/jia.png"></image>
+				</view>
 			</view>
 		</view>
 		<view class="main">
 			<!-- 好友申请 -->
-			<view class="friends">
+			<view class="friends" @tap="tofriendRequest">
 				<view class="friend-list">
 					<!-- 好友列表左侧部分 包括头像和消息提示 -->
 					<view class="friend-list-l">
@@ -24,12 +28,12 @@
 					</view>
 					<!-- 好友列表右侧 包括好友名、消息详情、发送时间 -->
 					<view class="friend-list-r">
-						 <view class="top">
-							 <view class="name">好友申请</view>
-							 <view class='time'>8:24</view>
-						 </view>
-						 <!-- 消息详情 -->
-						 <view class="message">茫茫人海，相聚便是缘分</view>
+						<view class="top">
+							<view class="name">好友申请</view>
+							<view class='time'>8:24</view>
+						</view>
+						<!-- 消息详情 -->
+						<view class="message">茫茫人海，相聚便是缘分</view>
 					</view>
 				</view>
 			</view>
@@ -43,12 +47,12 @@
 					</view>
 					<!-- 好友列表右侧 包括好友名、消息详情、发送时间 -->
 					<view class="friend-list-r">
-						 <view class="top">
-							 <view class="name">{{item.name}}</view>
-							 <view class='time'>{{formatTime(item.time)}}</view>
-						 </view>
-						 <!-- 消息详情 -->
-						 <view class="message">{{item.message}}</view>
+						<view class="top">
+							<view class="name">{{item.name}}</view>
+							<view class='time'>{{formatTime(item.time)}}</view>
+						</view>
+						<!-- 消息详情 -->
+						<view class="message">{{item.message}}</view>
 					</view>
 				</view>
 			</view>
@@ -66,59 +70,79 @@
 			}
 		},
 		onLoad() {
-          this.getFriends()
+			this.getFriends()
 		},
 		methods: {
 			//date 消息发送的时间
-			formatTime: function(date){
+			formatTime: function(date) {
 				return timeUtils.dateTime(date)
 			},
-           getFriends: function(){
-			    //向实例上绑定friends数据
-			   this.friends = datas.friends();
-			   for(let i = 0;i<this.friends.length;i++){
-				  this.friends[i].imgurl = '../../static/images/img/'+this.friends[i].imgurl
-			   }
-			  // console.log(this.friends)
-		   },
-		   toSearchPage:function(){
-			   uni.navigateTo({
-			   	url: '../search/search',
-			   })
-		   }
+			getFriends: function() {
+				//向实例上绑定friends数据
+				this.friends = datas.friends();
+				for (let i = 0; i < this.friends.length; i++) {
+					this.friends[i].imgurl = '../../static/images/img/' + this.friends[i].imgurl
+				}
+				// console.log(this.friends)
+			},
+			toSearchPage: function() {
+				uni.navigateTo({
+					url: '../search/search',
+				})
+			},
+			tofriendRequest: function() {
+				uni.navigateTo({
+					url: '../friendRequest/friendRequest',
+				})
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-  @import "../../commons/css/mycss.scss";
-   .content {
-		padding-bottom: $uni-spacing-col-base;//方便观看最下面的消息
+	@import "../../commons/css/mycss.scss";
+
+	.content {
+		padding-bottom: $uni-spacing-col-base; //方便观看最下面的消息
 	}
-    .top-bar {
-		background: rgba(255,255,255,0.95);
+
+	.top-bar {
+		background: rgba(255, 255, 255, 0.95);
 		border-bottom: 1px solid $uni-border-color;
+
+		.top-bar-right {
+			image {
+				padding: 18rpx 0 0 18rpx; //(88-52)/2
+				width: 52rpx;
+				height: 52rpx;
+			}
+		}
 	}
-    .main {
+
+	.main {
 		width: 100%;
 		padding-top: 100rpx; //top-bar 高度是88rpx 再往下一点让好友列表离顶部远一点
-	} 
-	
-	.friend-list{
+	}
+
+	.friend-list {
 		height: 96rpx;
 		padding: 16rpx $uni-spacing-col-base;
-		&:active{
+
+		&:active {
 			background-color: $uni-bg-color-grey;
 		}
-		.friend-list-l{
+
+		.friend-list-l {
 			position: relative;
 			float: left;
+
 			image {
 				width: 96rpx;
 				height: 96rpx;
 				border-radius: $uni-border-radius-base;
 				background-color: $uni-color-primary;
 			}
+
 			.tip {
 				position: absolute;
 				z-index: 10;
@@ -130,15 +154,18 @@
 				background: $uni-color-warning;
 				border-radius: 18rpx;
 				font-size: $uni-font-size-sm;
-				color:$uni-text-color-inverse;
+				color: $uni-text-color-inverse;
 				line-height: 36rpx;
-			    text-align: center;
+				text-align: center;
 			}
 		}
+
 		.friend-list-r {
 			padding-left: 128rpx;
+
 			.top {
 				height: 50rpx;
+
 				.name {
 					float: left;
 					font-size: 36rpx;
@@ -146,6 +173,7 @@
 					color: $uni-text-color;
 					line-height: 50rpx;
 				}
+
 				.time {
 					//display: none;
 					float: right;
@@ -155,15 +183,16 @@
 				}
 			}
 		}
-	  .message{
-		  font-size: $uni-font-size-base;
-		  color: $uni-text-color-grey;
-		  line-height: 40rpx;
-		  //css单行省略号
-		  display: -webkit-box;
-		  -webkit-box-orient: vertical;
-		  -webkit-line-clamp: 1;
-		  overflow: hidden;
-	  }
+
+		.message {
+			font-size: $uni-font-size-base;
+			color: $uni-text-color-grey;
+			line-height: 40rpx;
+			//css单行省略号
+			display: -webkit-box;
+		 -webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden;
+		}
 	}
 </style>

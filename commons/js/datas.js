@@ -117,5 +117,75 @@ export default{
 			},
 		]
 		return friendList
+	},
+	//聊天框数据
+	message:function(){
+		let msgs = [
+			{
+				id:'1',
+				imgUrl:'one.jpg',
+				message:'晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪',
+				types:0,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000,    //发送时间
+				tip:0
+			},
+			{
+				id:'1',
+				imgUrl:'one.jpg',
+				message:'晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪',
+				types:0,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*16,    //发送时间
+				tip:1
+			},
+			{
+				id:'2',
+				imgUrl:'three.jpg',
+				message:'老八秘制小汉堡',
+				types:0,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*60,    //发送时间
+				tip:2
+			},
+			{
+				id:'2',
+				imgUrl:'three.jpg',
+				message:'four.jpg',
+				types:1,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*60*36,    //发送时间
+				tip:3
+			},
+			{
+				id:'1',
+				imgUrl:'one.jpg',
+				message:'three.jpg',
+				types:1,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*60*40,    //发送时间
+				tip:4
+			},
+			{
+				id:'1',
+				imgUrl:'one.jpg',
+				message:'一天不摆浑身难受',
+				types:0,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*60*60*60,    //发送时间
+				tip:5
+			},
+			{
+				id:'2',
+				imgUrl:'three.jpg',
+				message:'小汉堡',
+				types:0,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*60*60*80,    //发送时间
+				tip:6
+			},
+			{
+				id:'2',
+				imgUrl:'three.jpg',
+				message:'兄弟们',
+				types:0,               //内容类型 (0文字，1图片链接，2音频链接)
+				time:new Date()-1000*60*60*90,    //发送时间
+				tip:7
+			},
+		]
+		return msgs
 	}
 }

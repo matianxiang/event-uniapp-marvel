@@ -14,7 +14,7 @@
 		padding-top: var(--status-bar0-height);
 		.top-bar-left{
 			   float: left;
-			   padding:0  $uni-spacing-col-base;
+			   padding:0  $uni-spacing-col-lg;
 			   image{
 				     padding-top: 10rpx; //(88-68)/2
 				     width: 68rpx;
@@ -68,11 +68,6 @@
 			 	color: $uni-text-color;
 			 	line-height: 88rpx;
 				padding-right: 20rpx;
-			 }
-			 image{
-				 padding: 18rpx 0 0 18rpx; //(88-52)/2
-				 width: 52rpx;
-				 height: 52rpx;
 			 }
 			 .more-img{
 				 height: 88rpx;
