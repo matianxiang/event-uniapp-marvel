@@ -14,10 +14,10 @@
 				</view>
 			</view>
 		</view>
-		<scroll-view scroll-y="true" class="chat" scroll-with-animation="true">
+		<scroll-view scroll-y="true" class="chat" scroll-with-animation="true" :scroll-into-view="scrollToView">
 			<view class="chat-main">
-				<view class="chat-ls" v-for="(item,index) in msgs" :key='item.tip'>
-					<view class="chat-time">
+				<view class="chat-ls" v-for="(item,index) in msgs" :key='item.tip' :id="'msg'+item.tip">
+					<view class="chat-time" v-if="item.time!=''">
 						{{formatTime(item.time)}}
 					</view>
 					<view class="msg-m msg-left" v-if='item.id!=2'>
@@ -26,7 +26,8 @@
 							<view class="msg-text">{{item.message}}</view>
 						</view>
 						<view class="message" v-if="item.types==1">
-							<image :src="item.message" class="msg-img" mode="widthFix" @tap="previewImg(item.message)"></image>
+							<image :src="item.message" class="msg-img" mode="widthFix" @tap="previewImg(item.message)">
+							</image>
 						</view>
 					</view>
 					<view class="msg-m msg-right" v-if='item.id==2'>
@@ -35,28 +36,39 @@
 							<view class="msg-text">{{item.message}}</view>
 						</view>
 						<view class="message" v-if="item.types==1">
-							<image :src="item.message" class="msg-img" mode="widthFix" @tap="previewImg(item.message)"></image>
+							<image :src="item.message" class="msg-img" mode="widthFix" @tap="previewImg(item.message)">
+							</image>
 						</view>
 					</view>
 				</view>
 			</view>
+			<view class="padbt"></view>
 		</scroll-view>
+		<submit></submit>
 	</view>
 </template>
 
 <script>
 	import datas from '../../commons/js/datas.js'
 	import timeUtils from '../../commons/utils/timeUtils.js'
+	import myfun from '../../commons/utils/myfun.js'
+	import submit from '../../components/submit/submit.vue'
 	export default {
 		data() {
 			return {
 				msgs: [],
 				//用来存放聊天数据中的图片 供查看图片功能使用
-				imgMsg:[],
+				imgMsg: [],
+				scrollToView: '',
+				nowtime: new Date(),
+				
 			};
 		},
 		onLoad() {
 			this.getMsg()
+		},
+		components:{
+			submit
 		},
 		methods: {
 			backOneStep: function() {
@@ -70,6 +82,17 @@
 				//console.log(msg)
 				for (let i = 0; i < msg.length; i++) {
 					msg[i].imgUrl = '../../static/images/img/' + msg[i].imgUrl
+					//时间间隔
+					//i=msg.length就是最后一条msg即最早的msg 默认显示时间 其余的需要判断
+					if (i < msg.length - 1) {
+						let t = myfun.spaceTime(this.nowtime, msg[i].time)
+						if (t) {
+							//如果上一次发消息距离现在超过5分钟 this.nowtime=上一次发消息的时间
+							this.nowtime = t
+						}
+						msg[i].time = t
+					}
+
 					//补充图片地址
 					if (msg[i].types == 1) {
 						msg[i].message = '../../static/images/img/' + msg[i].message
@@ -78,24 +101,29 @@
 					}
 					//倒序插入 最新的消息在最下面显示
 					this.msgs.unshift(msg[i])
+					
 				}
 				//console.log(this.msgs)
+				this.$nextTick(function(){
+					//for循环结束后 滚动到最后一条
+					this.scrollToView = 'msg'+this.msgs[msg.length-2].tip
+				})
 			},
 			//date 消息发送的时间
 			formatTime: function(date) {
-				return timeUtils.dateTime(date)
+				return timeUtils.dateTime1(date)
 			},
 			//预览图片
 			previewImg: function(e) {
 				//获取当前点击图片的索引
 				let index = 0;
-				for(let i =0;i<this.imgMsg.length;i++){
-					if(this.imgMsg[i] == e){
+				for (let i = 0; i < this.imgMsg.length; i++) {
+					if (this.imgMsg[i] == e) {
 						index = i
 					}
 				}
 				uni.previewImage({
-					current:index,
+					current: index,
 					urls: this.imgMsg,
 					longPressActions: {
 						itemList: ['发送给朋友', '保存图片', '收藏'],
@@ -146,7 +174,9 @@
 
 	.chat {
 		height: 100%;
-
+        .padbt{
+			padding-top: var(--status-bar-height);
+		}
 		.chat-main {
 			padding-left: $uni-spacing-col-base;
 			padding-right: $uni-spacing-col-base;

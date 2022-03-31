@@ -1,6 +1,13 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/search/search",
+    "pages/userhome/userhome",
+    "pages/userdetails/userdetails",
+    "pages/friendRequest/friendRequest",
+    "pages/chatroom/chatroom"
   ],
   "subPackages": [],
   "window": {

@@ -13,7 +13,7 @@
 					<image src="../../static/images/index/sousuo.png"></image>
 				</view>
 				<view class="add">
-					<image src="../../static/images/index/jia.png"></image>
+					<image src="../../static/images/index/add.png"></image>
 				</view>
 			</view>
 		</view>
@@ -115,6 +115,7 @@
 				padding: 18rpx 0 0 18rpx; //(88-52)/2
 				width: 52rpx;
 				height: 52rpx;
+				color: black;
 			}
 		}
 	}

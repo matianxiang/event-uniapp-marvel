@@ -67,6 +67,56 @@ export default {
 			minute = '0' + minute
 		}
 		return Y + '-' + M + '-' + D + '' + hour + ':' + m
-
+	},
+	//聊天框时间转换
+	dateTime1(e) {
+		let old = new Date(e)
+		let now = new Date()
+		//获取消息发送的具体时间
+		let day = old.getTime()
+		let hour = old.getHours()
+		let minute = old.getHours()
+		let Y = old.getFullYear()
+		let M = old.getMonth() + 1
+		let D = old.getDate()
+		//获取当前具体时间
+		let nday = now.getTime()
+		let nhour = now.getHours()
+		let nminute = now.getHours()
+		let nY = now.getFullYear()
+		let nM = now.getMonth() + 1
+		let nD = now.getDate()
+	
+		//消息发送的事件是否处于当天时间
+		if (D === nD && Y === nY && M === nM) {
+			if (hour < 10) {
+				hour = '0' + hour
+			}
+			if (minute < 10) {
+				minute = '0' + minute
+			}
+			return hour + ':' + minute
+		} else if (D + 1 === nD && Y === nY && M === nM) {
+			//消息发送的时间处于昨天时间
+			if (hour < 10) {
+				hour = '0' + hour
+			}
+			if (minute < 10) {
+				minute = '0' + minute
+			}
+			return '昨天' + hour + ':' + minute
+		} else if(Y === nY){
+			//今年
+			if(hour<10){
+				hour='0'+hour
+			}
+			if(minute<10){
+				minute = '0'+minute
+			}
+			return M + '月' + D + '日 '+hour+':'+minute
+		}else{
+			//超过今年
+			return Y+'/'+M+'/'+D
+		}
 	}
 }

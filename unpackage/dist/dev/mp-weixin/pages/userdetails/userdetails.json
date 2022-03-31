@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "image-cropper": "/components/ling-imgcropper/ling-imgcropper"
+  }
+}

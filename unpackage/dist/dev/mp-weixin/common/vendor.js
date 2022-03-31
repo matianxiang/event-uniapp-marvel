@@ -947,7 +947,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7647,7 +7647,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7668,14 +7668,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7761,7 +7761,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"marvel","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8635,9 +8635,9 @@ function resolveLocaleChain(locale) {
 
 /***/ }),
 /* 5 */
-/*!******************************************************!*\
-  !*** C:/Users/lenovo/Desktop/项目合集/marvel/pages.json ***!
-  \******************************************************/
+/*!**************************************************************!*\
+  !*** C:/Users/1/Desktop/项目合集/event-uniapp-marvel/pages.json ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8784,9 +8784,9 @@ function normalizeComponent (
 /* 16 */,
 /* 17 */,
 /* 18 */
-/*!***************************************************************!*\
-  !*** C:/Users/lenovo/Desktop/项目合集/marvel/commons/js/datas.js ***!
-  \***************************************************************/
+/*!***********************************************************************!*\
+  !*** C:/Users/1/Desktop/项目合集/event-uniapp-marvel/commons/js/datas.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8801,6 +8801,7 @@ var _default = {
       imgurl: 'one.jpg',
       tip: 3,
       name: '孙哥',
+      email: 'senlang@163.com',
       time: new Date(),
       message: '玩剑圣的都没ma' },
 
@@ -8809,6 +8810,7 @@ var _default = {
       imgurl: 'two.jpg',
       tip: 1,
       name: '刘墨林',
+      email: 'tianxiang@163.com',
       time: new Date(),
       message: '苏瞬卿是天下第一女子' },
 
@@ -8817,6 +8819,7 @@ var _default = {
       imgurl: 'three.jpg',
       tip: 6,
       name: '南邮彭于晏',
+      email: 'axiswee@163.com',
       time: new Date(),
       message: '你知道的，太帅是要被排斥的' },
 
@@ -8825,106 +8828,165 @@ var _default = {
       imgurl: 'four.jpg',
       tip: 99,
       name: '乌克兰特工',
+      email: 'pop@163.com',
       time: new Date(),
       message: '表，救我' },
 
     {
-      id: 4,
+      id: 5,
       imgurl: 'four.jpg',
       tip: 99,
       name: '乌克兰特工',
+      email: 'wangyi@163.com',
       time: new Date(),
       message: '表，救我' },
 
     {
-      id: 4,
+      id: 6,
       imgurl: 'four.jpg',
       tip: 99,
       name: '乌克兰特工',
+      email: 'qq@163.com',
       time: new Date(),
       message: '表，救我' },
 
     {
-      id: 4,
+      id: 7,
       imgurl: 'four.jpg',
       tip: 99,
       name: '乌克兰特工',
+      email: 'music@163.com',
       time: new Date(),
       message: '表，救我' },
 
     {
-      id: 4,
+      id: 8,
       imgurl: 'four.jpg',
       tip: 99,
       name: '乌克兰特工',
+      email: 'tencent@163.com',
       time: new Date(),
       message: '表，救我' },
 
     {
-      id: 4,
+      id: 9,
       imgurl: 'four.jpg',
-      tip: 99,
+      tip: 0,
       name: '乌克兰特工',
+      email: 'alibaba@163.com',
       time: new Date(),
       message: '表，救我' },
 
     {
-      id: 4,
+      id: 10,
       imgurl: 'four.jpg',
       tip: 99,
       name: '乌克兰特工',
-      time: new Date(),
-      message: '表，救我' },
-
-    {
-      id: 4,
-      imgurl: 'four.jpg',
-      tip: 99,
-      name: '乌克兰特工',
-      time: new Date(),
-      message: '表，救我' },
-
-    {
-      id: 4,
-      imgurl: 'four.jpg',
-      tip: 99,
-      name: '乌克兰特工',
-      time: new Date(),
-      message: '表，救我' },
-
-    {
-      id: 4,
-      imgurl: 'four.jpg',
-      tip: 99,
-      name: '乌克兰特工',
-      time: new Date(),
-      message: '表，救我' },
-
-    {
-      id: 4,
-      imgurl: 'four.jpg',
-      tip: 99,
-      name: '乌克兰特工',
-      time: new Date(),
-      message: '表，救我' },
-
-    {
-      id: 4,
-      imgurl: 'four.jpg',
-      tip: 99,
-      name: '乌克兰特工',
+      email: 'alibaba@163.com',
       time: new Date(),
       message: '表，救我' }];
 
 
     return friendarr;
+  },
+  //好友列表
+  friendlist: function friendlist() {
+    var friendList = [
+    {
+      userid: 1,
+      friend: 1 },
+
+    {
+      userid: 1,
+      friend: 2 },
+
+    {
+      userid: 1,
+      friend: 5 },
+
+    {
+      userid: 1,
+      friend: 8 }];
+
+
+    return friendList;
+  },
+  //聊天框数据
+  message: function message() {
+    var msgs = [
+    {
+      id: '1',
+      imgUrl: 'one.jpg',
+      message: '晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪',
+      types: 0, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000, //发送时间
+      tip: 0 },
+
+    {
+      id: '1',
+      imgUrl: 'one.jpg',
+      message: '晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪晴天小猪',
+      types: 0, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 16, //发送时间
+      tip: 1 },
+
+    {
+      id: '2',
+      imgUrl: 'three.jpg',
+      message: '老八秘制小汉堡',
+      types: 0, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 60, //发送时间
+      tip: 2 },
+
+    {
+      id: '2',
+      imgUrl: 'three.jpg',
+      message: 'four.jpg',
+      types: 1, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 60 * 36, //发送时间
+      tip: 3 },
+
+    {
+      id: '1',
+      imgUrl: 'one.jpg',
+      message: 'three.jpg',
+      types: 1, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 60 * 40, //发送时间
+      tip: 4 },
+
+    {
+      id: '1',
+      imgUrl: 'one.jpg',
+      message: '一天不摆浑身难受',
+      types: 0, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 60 * 60 * 60, //发送时间
+      tip: 5 },
+
+    {
+      id: '2',
+      imgUrl: 'three.jpg',
+      message: '小汉堡',
+      types: 0, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 60 * 60 * 80, //发送时间
+      tip: 6 },
+
+    {
+      id: '2',
+      imgUrl: 'three.jpg',
+      message: '兄弟们',
+      types: 0, //内容类型 (0文字，1图片链接，2音频链接)
+      time: new Date() - 1000 * 60 * 60 * 90, //发送时间
+      tip: 7 }];
+
+
+    return msgs;
   } };exports.default = _default;
 
 /***/ }),
 /* 19 */
-/*!**********************************************************************!*\
-  !*** C:/Users/lenovo/Desktop/项目合集/marvel/commons/utils/timeUtils.js ***!
-  \**********************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/Users/1/Desktop/项目合集/event-uniapp-marvel/commons/utils/timeUtils.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8972,6 +9034,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       //早于昨天
       return Y + '/' + M + '/' + D;
     }
+
+  },
+  //详细时间转换
+  detailTime: function detailTime(e) {
+    var old = new Date(e);
+    //获取消息发送的具体时间
+    var day = old.getTime();
+    var hour = old.getHours();
+    var minute = old.getHours();
+    var Y = old.getFullYear();
+    var M = old.getMonth() + 1;
+    var D = old.getDate();
+    //处理时间
+    if (M < 10) {
+      M = '0' + M;
+    }
+    if (hour < 10) {
+      hour = '0' + hour;
+    }
+    if (D < 10) {
+      D = '0' + D;
+    }
+    if (minute < 10) {
+      minute = '0' + minute;
+    }
+    return Y + '-' + M + '-' + D + '' + hour + ':' + m;
 
   } };exports.default = _default;
 
